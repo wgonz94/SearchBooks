@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/wgonz94/Google-Book-Search/issues"
   },
-  "homepage": "https://github.com/wgonz94/Google-Book-Search#readme"
+  "homepage": "https://github.com/wgonz94/Google-Book-Search#readme",
+  "dependencies": {
+    "mongoose": "^5.8.1"
+  }
 }
