@@ -4,7 +4,10 @@ function Nav() {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <a className="navbar-brand" href="/">
-                Google Books Reading List
+                Search Books
+            </a>
+            <a className="navbar-brand" href="/bookshelf">
+                Saved Books
             </a>
         </nav>
     );

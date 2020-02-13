@@ -1,25 +1,43 @@
-import React from 'react';
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Books from "./pages/Books";
-import Detail from "./pages/Detail";
-import NoMatch from "./pages/NoMatch";
+import Saved from "./pages/Saved";
+import Search from "./pages/Search";
 import Nav from "./components/Nav";
+import { Container} from "./components/Grid";
+import { ToastContainer, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
-function App() {
-  return (
-    <Router>
+class App extends Component {
+  render() {
+    return (
       <div>
-        <Nav />
-        <Switch>
-          <Route exact path="/" component={Books} />
-          <Route exaxt path="/books" component={Books} />
-          <Route exact path="/books/:id" component={Detail} />
-          <Route component={NoMatch} />
-        </Switch>
+        <Nav/>
+        <Router>
+          <Container>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            transition={Zoom}
+            hideProgressBar
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnVisibilityChange
+            draggable={false}
+            pauseOnHover
+          />
+            <Switch>
+              <Route exact path="/" component={Search} />
+              <Route path="/bookshelf" component={Saved} />
+              <Route exact path="/books/:id" component={null} />
+              <Route component={null} />
+            </Switch>
+          </Container>
+        </Router>
       </div>
-    </Router>
-  );
+    );
+  }
 }
 
 export default App;
