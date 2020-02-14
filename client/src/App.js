@@ -7,12 +7,14 @@ import { Container} from "./components/Grid";
 import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
+import Jumbotron from "./components/Jumbotron";
 
 class App extends Component {
   render() {
     return (
       <div>
         <Nav/>
+        <Jumbotron />
         <Router>
           <Container>
           <ToastContainer
