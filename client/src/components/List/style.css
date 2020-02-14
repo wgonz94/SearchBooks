@@ -31,3 +31,7 @@ color: #2a878c;
 .list-overflow-container li:last-child{
     border-bottom: none;
 }
+
+p{
+    color: black !important;
+}

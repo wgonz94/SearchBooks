@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import axios from "axios";
 import { Row, Col } from "../components/Grid";
 import {List, ListItem} from "../components/List";
@@ -8,7 +8,6 @@ import SaveBtn from "../components/SaveBtn"
 
 class Search extends Component {
     state = {
-        results: [],
         query: "",
         books: []
     };
@@ -23,7 +22,7 @@ class Search extends Component {
         axios
             .get(url)
             .then(res => {
-                //console.log(res)
+                console.log(res.data.items)
                 this.displayResults(res.data);
             })
             .catch(err => console.log(err))
@@ -49,16 +48,15 @@ class Search extends Component {
                         <List>
                             {this.state.books.map(book => {
                                 return(
-                                    <div>
+                                    <div key={book.id}>
                                     <ListItem
-                                    key={book.id} 
-                                    author={book.volumeInfo.author ? book.volumeInfo.author : ["No Author Available"]}
+                                    author={book.volumeInfo.authors ? book.volumeInfo.authors : ["No Author Available"]}
                                     title={book.volumeInfo.title}
                                     description={book.volumeInfo.description ? 
                                       book.volumeInfo.description : "No Description Available"}
                                     link={book.volumeInfo.infoLink}
-                                    image={book.volumeInfo.imageLinks.image ? 
-                                      book.volumeInfo.imageLinks.image : "#"}
+                                    image={book.volumeInfo.imageLinks.thumbnail ? 
+                                      book.volumeInfo.imageLinks.thumbnail: "#"}
                                     />
 
                                     <SaveBtn
@@ -72,6 +70,7 @@ class Search extends Component {
                                     
                                     />
                                     </div>
+                                    
                                 )
                             })}
 

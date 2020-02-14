@@ -1,5 +1,6 @@
-import React from "react"
+import React, { Component } from "react"
 import "./style.css"
+import {Col, Row, Container } from '../Grid/index'
 
 export function List({ children }) {
     return (
@@ -9,6 +10,33 @@ export function List({ children }) {
     );
 }
 
-export function ListItem({ children }) {
-    return <li className="list-group-item">{children}</li>;
+export class ListItem extends Component {
+    render() {
+        console.log(this.props)
+    return (
+    
+    <li>
+        <Container>
+          <Row>
+            <Col size="xs-4 sm-2">
+              <img src={this.props.image} />
+            </Col>
+            <Col size="xs-8 sm-9">
+              <h3>{this.props.title}<span><h5>{this.props.author.join(", ")}</h5></span></h3>
+              <p>
+                {this.props.description}
+              </p>
+              <a
+                target="_blank"
+                href={this.props.link}
+                rel="noopener noreferrer"
+              >
+                Go to book!
+              </a>
+            </Col>
+          </Row>
+        </Container>
+      </li>
+    )
+    }
 }
