@@ -22,3 +22,18 @@ button.btn.btn-success{
     right: 25px;
     bottom: 35px;
 }
+
+span.delete-btn{
+    position: relative;
+    bottom: 230px;
+    right: 15px;
+    font-size: 50px;
+}
+span.delete-btn:hover{
+    color: yellow;
+}
+
+div.thumbnail{
+    position: relative;
+    top: 25px;
+}

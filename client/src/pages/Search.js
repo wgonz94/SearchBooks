@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component} from "react";
 import axios from "axios";
 import { Row, Col } from "../components/Grid";
 import {List, ListItem} from "../components/List";
@@ -9,23 +9,24 @@ import "./style.css"
 class Search extends Component {
     state = {
         query: "",
-        books: []
+        books: [],
     };
 
     displayResults = data => {
-        this.setState({ books: data.items })
+        this.setState({
+            books: data.items,      
+        })
     };
 
     searchBooks = () => {
         let url = `https://www.googleapis.com/books/v1/volumes?q=${ this.state.query}`;
-
         axios
             .get(url)
             .then(res => {
-                console.log(res.data.items)
+                // console.log(res.data.items)
                 this.displayResults(res.data);
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err.response))
     };
 
     handleEntry = e => {
@@ -47,25 +48,26 @@ class Search extends Component {
                         {(this.state.books && this.state.books.length > 0 ) ?
                         <List className="listGroup">
                             {this.state.books.map(book => {
-                                return(
+                                return (
                                     <div key={book.id}>
                                     <ListItem
-                                    author={book.volumeInfo.authors ? book.volumeInfo.authors : ["No Author Available"]}
+                                    key={book.id}
+                                    authors={book.volumeInfo.authors ? book.volumeInfo.authors : ["No Author Available"]}
                                     title={book.volumeInfo.title}
                                     description={book.volumeInfo.description ? 
                                       book.volumeInfo.description : "No Description Available"}
                                     link={book.volumeInfo.infoLink}
-                                    image={book.volumeInfo.imageLinks.thumbnail ? 
+                                    thumbnail={book.volumeInfo.imageLinks.thumbnail? 
                                       book.volumeInfo.imageLinks.thumbnail: "#"}
                                     />
 
                                     <SaveBtn
-                                    author={book.volumeInfo.authors ? book.volumeInfo.authors : ["No Author Available"]}
+                                    authors={book.volumeInfo.authors ? book.volumeInfo.authors : ["No Author Available"]}
                                     title={book.volumeInfo.title}
                                     description={book.volumeInfo.description ? 
                                         book.volumeInfo.description : "No Description Available"}
                                     link={book.volumeInfo.infoLink}
-                                    image={book.volumeInfo.imageLinks.thumbnail ? 
+                                    thumbnail={book.volumeInfo.imageLinks.thumbnail? 
                                         book.volumeInfo.imageLinks.thumbnail : "#"}
                                     
                                     />

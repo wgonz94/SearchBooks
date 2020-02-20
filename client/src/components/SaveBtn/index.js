@@ -10,7 +10,7 @@ class SaveBtn extends Component{
           title: book.title,
           author: book.authors,
           description: book.description,
-          image: book.thumbnail,
+          thumbnail: book.thumbnail,
           link: book.link
         }
     

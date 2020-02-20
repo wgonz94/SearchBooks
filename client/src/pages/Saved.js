@@ -5,7 +5,7 @@ import axios from "axios";
 import NoBooks from '../components/NoBooks';
 import DeleteBtn from '../components/DeleteBtn';
 import { toast } from 'react-toastify';
-
+import "./style.css"
 
 class Saved extends Component {
   state = {
@@ -22,7 +22,7 @@ class Saved extends Component {
       .then(res => {
         this.setState({ savedBooks: res.data })
       })
-      .catch((err => console.log(err)))
+      .catch((err => console.log(err.response)))
   }
 
   deleteFromDB = id => {
@@ -34,7 +34,7 @@ class Saved extends Component {
         this.getBooks();
         
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err.response))
   }
 
   render() {
@@ -44,17 +44,17 @@ class Saved extends Component {
           <Col size="md-12">
             {this.state.savedBooks.length > 0 ?
               <List>
-                {this.state.savedBooks.map(book => {
+                {this.state.savedBooks.map((book, key) => {
                   console.log(book)
                   return (
-                    <div>
+                    <div key={book._id}>
                       <ListItem
                         key={book._id}
-                        author={book.authors}
+                        authors={book.author}
                         title={book.title}
                         description={book.description}
                         link={book.link}
-                        image={book.thumbnail}
+                        thumbnail={book.thumbnail}
                       // delete={()=> this.deleteFromDB(book._id)}
                       />
                       <DeleteBtn
