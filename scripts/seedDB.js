@@ -1,19 +1,33 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 
-//empties GoogleBooks collection and inserts the data below
+// This file empties the Books collection and inserts the books below
 
 mongoose.connect(
-    process.env.MONGODB_URI ||
-    "mongodb://localhost/googlebooks");
+  process.env.MONGODB_URI ||
+  "mongodb://localhost/googlebooks"
+);
 
+const bookSeed = [
+  {
+    title: "The Dead Zone",
+    author: "Stephen King",
+    image: "#",
+    link: "#",
+    description:
+      "A number-one national best seller about a man who wakes up from a five-year coma able to see people's futures and the terrible fate awaiting mankind in The Dead Zone - a \"compulsive page-turner\" (The Atlanta Journal-Constitution). Johnny Smith awakens from a five-year coma after his car accident and discovers that he can see people's futures and pasts when he touches them. Many consider his talent a gift; Johnny feels cursed. His fiancée married another man during his coma, and people clamor for him to solve their problems. When Johnny has a disturbing vision after he shakes the hand of an ambitious and amoral politician, he must decide if he should take drastic action to change the future. The Dead Zone is a \"faultlessly paced...continuously engrossing\" (Los Angeles Times) novel of second sight.",
+    date: new Date(Date.now())
+  }
+];
 
-const googleSeed = [
-    {
-        authors: ["J.K. Rowling"],
-        description: "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. An incredible adventure is about to begin!",
-        image: "",
-        link: "",
-        title: ""
-    }
-]
+db.Book
+  .remove({})
+  .then(() => db.Book.collection.insertMany(bookSeed))
+  .then(data => {
+    console.log(data.result.n + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });

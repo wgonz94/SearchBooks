@@ -33,6 +33,7 @@ export class ListItem extends Component {
               >
                 Go to book!
               </a>
+              
             </Col>
           </Row>
         </Container>

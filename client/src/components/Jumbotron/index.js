@@ -8,7 +8,7 @@ function Jumbotron() {
          className="jumbotron"
          >
              <h1>Google Reading List</h1>
-             <p>Powered By Google Books</p>
+             <p className="jumbo">Powered By Google Books</p>
          </div>
      );
 }

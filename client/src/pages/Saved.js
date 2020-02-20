@@ -50,11 +50,11 @@ class Saved extends Component {
                     <div>
                       <ListItem
                         key={book._id}
-                        author={book.author}
+                        author={book.authors}
                         title={book.title}
                         description={book.description}
                         link={book.link}
-                        image={book.image}
+                        image={book.thumbnail}
                       // delete={()=> this.deleteFromDB(book._id)}
                       />
                       <DeleteBtn

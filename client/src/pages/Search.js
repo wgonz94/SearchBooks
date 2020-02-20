@@ -4,7 +4,7 @@ import { Row, Col } from "../components/Grid";
 import {List, ListItem} from "../components/List";
 import NoBooks from "../components/NoBooks";
 import SaveBtn from "../components/SaveBtn"
-
+import "./style.css"
 
 class Search extends Component {
     state = {
@@ -38,14 +38,14 @@ class Search extends Component {
     render() {
         return (
             <Row>
-                <Col size="md-12">
+                <Col size="md-12" className="display">
                     <div>
                         <input type="text" name="query" onChange={this.handleEntry}/>
                         <button type="submit" onClick={this.searchBooks}>Search for Books</button>
                     
                     
                         {(this.state.books && this.state.books.length > 0 ) ?
-                        <List>
+                        <List className="listGroup">
                             {this.state.books.map(book => {
                                 return(
                                     <div key={book.id}>
@@ -76,7 +76,10 @@ class Search extends Component {
 
                         </List>
                         :
-                        <NoBooks/>
+                        <div className="display">
+                         <NoBooks/>   
+                        </div>
+                        
                         }
                     </div>
                 </Col>

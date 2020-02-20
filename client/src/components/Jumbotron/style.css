@@ -8,7 +8,7 @@ h1{
     position: relative;
     bottom: 30px;
 }
-p{
+p.jumbo{
     margin-top: 90px;
-    color: whitesmoke;
+    color: whitesmoke !important
 }

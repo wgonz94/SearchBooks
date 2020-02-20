@@ -8,7 +8,7 @@ class SaveBtn extends Component{
     postToDB = (book) => {
         const dbBook = {
           title: book.title,
-          author: book.author,
+          author: book.authors,
           description: book.description,
           image: book.thumbnail,
           link: book.link
@@ -16,7 +16,7 @@ class SaveBtn extends Component{
     
         axios.post("/api/books", dbBook)
         .then( () => toast.success(`You added ${book.title} to your bookshelf`))
-        .catch(err => console.log(err))
+        .catch(err => console.log(err.response))
       }
 
     render() {
