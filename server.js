@@ -1,23 +1,25 @@
 const express = require("express");
-
-const passport = require('passport');
-const flash = require('connect-flash');
-const session = require('express-session');
-
 const mongoose = require("mongoose");
-const routes = require("./routes");
+const passport = require('passport');
+
 const path = require("path");
+const dotenv = require("dotenv").config()
 const PORT = process.env.PORT || 8080;
 const app = express();
+
+const user = require('./routes/api/user')
+const books = require('./routes/api/books')
 
 // Passport Config
 require('./config/passport')(passport);
 
 // DB Config
-const db = require('./config/keys').mongoURI;
+const db = require('./config/keys').mongoURI
 
 //Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks")
+mongoose.connect(db,{useNewUrlParser: true })
+        .then(() => console.log('MongoDb Connected!!'))
+        .catch(err => console.log(err));
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -28,36 +30,13 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-// Express session
-app.use(
-  session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
-  })
-);
-
-
-// Passport middleware
+// Passport middleware config
 app.use(passport.initialize());
-app.use(passport.session());
 
-// Connect flash
-app.use(flash());
-
-app.use(function(req, res, next) {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  next();
-});
 
 // Routes
-app.use('/', require('./routes/index.js'));
-app.use('/user', require('./routes/user.js'));
-
-// // Define API routes here
-// app.use(routes)
+app.use('/api/user', user);
+app.use('/api/books', books)
 
 
 
