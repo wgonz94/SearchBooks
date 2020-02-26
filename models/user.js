@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const config = require('../config/database');
+const Schema = mongoose.Schema;
 
 // User Schema
-const UserSchema = mongoose.Schema({
+const UserSchema = new Schema({
   firstname: {
     type: String
   },
@@ -30,9 +30,9 @@ UserSchema.methods.generateHash = function(password) {
 	return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
 };
 //  //  Checks to see if given password is valid
-UserSchema.methods.validPassword = function(password) {
-	return bcrypt.compareSync(password, this.password);
-};
+// UserSchema.methods.validPassword = function(password) {
+// 	return bcrypt.compareSync(password, this.password);
+// };
 
 //  Exports
 //  //  Declares User using the UserSchema
