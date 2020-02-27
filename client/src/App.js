@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import {DispatchContext, StateContext } from './loginReducer/user/SDContext'
+import {UserContext } from './loginReducer/user/SDContext'
 import loginReducer from './loginReducer/user/userReducer'
 import { useImmerReducer } from 'use-immer';
 

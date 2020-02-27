@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useReducer} from 'react';
 import axios from 'axios';
-import { useImmerReducer } from 'use-immer';
-import {DispatchContext, StateContext} from './SDContext'
-import loginReducer from './userReducer'
+import {UserContext} from './SDContext'
+import UserReducer from './userReducer'
 import setAuthToken from '../../utils/setAuthToken'
 
+
+const UserState = props => {
 const initialState = {
     token: localStorage.getItem('token'),
     isLoggedIn: false,
@@ -20,10 +21,17 @@ const initialState = {
     password2: '',
 };
 
-const [state, dispatch] = useImmerReducer(loginReducer, initialState);
+const [state, dispatch] = useReducer(UseReducer, initialState);
+
+const setUser = async () => {
+    if (localStorage.token) {
+        setAuthToken(localStorage.token);
+        dispatch({ type: 'setUser', payload: res.data });
+    } 
+};
 
 // // Register the User
-export const register = async regData => {
+const register = async regData => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -56,7 +64,7 @@ export const login = async logData => {
             type: 'login-success',
             payload: res.data 
         });
-
+        setUser();
     } catch (err) {
         dispatch({
             type: 'error',
@@ -64,4 +72,28 @@ export const login = async logData => {
     }
 };
 
+
 export const logout = () => dispatch({ type: LOGOUT });
+
+
+return (
+    <UserContext.Provider
+        value={{
+            // EVERYTHING WE NEED AVAILABE MUST BE HERE
+            token: state.token,
+            isLoggedIn: state.isLoggedIn,
+            isLoading: state.isLoading,
+            user: state.user,
+            error: state.error,
+            register,
+            login,
+            logout,
+        }}
+    >
+        {props.children}
+    </UserContext.Provider>
+);
+
+}
+
+export default UserState;

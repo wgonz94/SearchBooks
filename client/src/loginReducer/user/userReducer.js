@@ -45,6 +45,13 @@ export default (state, action) => {
             password2 : '',
              }   
         }
+        case 'setUser':
+            return {
+                ...state,
+                isLoggedIn: true,
+                loading: false,
+                user: action.payload
+            };
         case 'login-success': {
             localStorage.setItem('token', action.payload.token);
             return{
@@ -83,5 +90,7 @@ export default (state, action) => {
             password : '',
             }
         }
+        default:
+            return state;
     }
 }
