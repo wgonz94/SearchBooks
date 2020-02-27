@@ -25,6 +25,16 @@ export default function loginReducer(draft, action) {
             draft.password2 = '';
             return;  
         }
+        case 'register-error': {
+            draft.error = 'registration failed!'
+            draft.isLoading = false;
+            draft.firstname = '';
+            draft.lastname = '';
+            draft.username = '';
+            draft.email = '';
+            draft.password = '';
+            draft.password2 = '';
+        }
         case 'login-success': {
             localStorage.setItem('token', action.payload.token);
             draft.isLoggedIn = true;
