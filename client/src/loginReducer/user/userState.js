@@ -5,7 +5,7 @@ import {DispatchContext, StateContext} from './SDContext'
 import loginReducer from './userReducer'
 import setAuthToken from '../../utils/setAuthToken'
 
-export const initialState = {
+const initialState = {
     token: localStorage.getItem('token'),
     isLoggedIn: false,
     isLoading: false,

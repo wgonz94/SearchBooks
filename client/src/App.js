@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import {DispatchContext, StateContext } from './loginReducer/user/SDContext'
 
+import {DispatchContext, StateContext } from './loginReducer/user/SDContext'
+import loginReducer from './loginReducer/user/userReducer'
+import { useImmerReducer } from 'use-immer';
+
+import Register from './pages/Register';
 import Saved from "./pages/Saved";
 import Search from "./pages/Search";
 import Nav from "./components/Nav";
@@ -13,6 +17,22 @@ import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
+
+const [state, dispatch] = useImmerReducer(loginReducer, initialState);
+const initialState = {
+  token: localStorage.getItem('token'),
+  isLoggedIn: false,
+  isLoading: false,
+  user: {},
+  error: '',
+  username: '',
+  password: '',
+  firstname:'',
+  lastname: '',
+  email: '',
+  password: '',
+  password2: '',
+};
 
 class App extends Component {
   render() {
@@ -37,7 +57,7 @@ class App extends Component {
             pauseOnHover
           />
             <Switch>
-              <Route path="/" component={RegisterPage} />
+              <Route path="/" component={Register} />
               <Route path="/home" component={Search} />
               <Route path="/bookshelf" component={Saved} />
               <Route exact path="/books/:id" component={null} />

@@ -2,8 +2,5 @@
 
 import { createContext } from 'react';
 
-const StateContext = createContext();
-const DispatchContext = createContext();
-
-export default StateContext;
-export default DispatchContext;
+export const StateContext = createContext();
+export const DispatchContext = createContext();

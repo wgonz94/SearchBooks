@@ -37,7 +37,7 @@ export default function loginReducer(draft, action) {
             return;
         }
         case 'login-success': {
-            localStorage.setItem('token', action.payload.token),
+            localStorage.setItem('token', action.payload.token);
             draft.action.payload = action.payload;
             draft.isLoggedIn = true;
             draft.isLoading = false;
