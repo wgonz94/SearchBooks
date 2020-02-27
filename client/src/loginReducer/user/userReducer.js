@@ -34,12 +34,13 @@ export default function loginReducer(draft, action) {
             draft.email = '';
             draft.password = '';
             draft.password2 = '';
+            return;
         }
         case 'login-success': {
-            localStorage.setItem('token', action.payload.token);
+            localStorage.setItem('token', action.payload.token),
+            draft.action.payload = action.payload;
             draft.isLoggedIn = true;
             draft.isLoading = false;
-            draft.user = action.payload;
             draft.username = '';
             draft.password = '';
             return;

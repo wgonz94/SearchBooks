@@ -1,17 +1,24 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {DispatchContext, StateContext } from './loginReducer/user/SDContext'
+
 import Saved from "./pages/Saved";
 import Search from "./pages/Search";
 import Nav from "./components/Nav";
+import Jumbotron from "./components/Jumbotron";
 import { Container} from "./components/Grid";
+
+
 import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
-import Jumbotron from "./components/Jumbotron";
+
 
 class App extends Component {
   render() {
     return (
+      <DispatchContext.Provider value={dispatch}>
+      <StateContext.Provider value={state}>
       <div>
         <Nav/>
         <Jumbotron />
@@ -39,6 +46,8 @@ class App extends Component {
           </Container>
         </Router>
       </div>
+      </StateContext.Provider>
+      </DispatchContext.Provider>
     );
   }
 }
