@@ -1,70 +1,87 @@
 
-export default function loginReducer(draft, action) {
+export default (state, action) => {
     switch(action.type) {
         case 'field': {
-            draft[action.fieldName]= action.payload;
-            return;
+            return {
+                ...state,
+            [action.fieldName]: action.payload,
+            };
         }
         case 'login': {
-            draft.error= '';
-            draft.isLoading = true;
-            return;
+            return{
+                ...state,
+            error: '',
+            isLoading: true
+            }
         }
         case 'register': {
-            draft.message= '';
-            draft.isLoading = true;
-            return;
+            return{
+                ...state,
+            isLoading: true
+            };
         }
         case 'register-success': {
-            draft.isLoading = false;
-            draft.firstname = '';
-            draft.lastname = '';
-            draft.username = '';
-            draft.email = '';
-            draft.password = '';
-            draft.password2 = '';
-            return;  
+            return{
+            ...state,
+            isLoading: false,
+            firstname: '',
+            lastname: '',
+            username: '',
+            email: '',
+            password: '',
+            password2: '',
+            };  
         }
         case 'register-error': {
-            draft.error = 'registration failed!'
-            draft.isLoading = false;
-            draft.firstname = '';
-            draft.lastname = '';
-            draft.username = '';
-            draft.email = '';
-            draft.password = '';
-            draft.password2 = '';
-            return;
+            return{
+                ...state,
+            error : 'registration failed!',
+            isLoading : false,
+            firstname : '',
+            lastname : '',
+            username : '',
+            email : '',
+            password : '',
+            password2 : '',
+             }   
         }
         case 'login-success': {
             localStorage.setItem('token', action.payload.token);
-            draft.action.payload = action.payload;
-            draft.isLoggedIn = true;
-            draft.isLoading = false;
-            draft.username = '';
-            draft.password = '';
-            return;
+            return{
+            ...state,
+            user : action.payload,
+            isLoggedIn : true,
+            isLoading : false,
+            username : '',
+            password : '',
+            }
         }
         case 'error': {
-            draft.error = 'Incorrect Username or Password!';
-            draft.isLoggedIn = false;
-            draft.isLoading = false;
-            draft.username = '';
-            draft.password = '';
-            return;
+            return{
+            ...state,
+            error : 'Incorrect Username or Password!',
+            isLoggedIn : false,
+            isLoading : false,
+            username : '',
+            password : '',
+            }
         }
         case 'logOut': {
-            localStorage.removeItem('token')
-            draft.isLoggedIn = false;
-            return;
+            localStorage.removeItem('token');
+            return{
+            ...state,
+            isLoggedIn : false
+            }
         }
         case 'error-login': {
-            draft.error = 'Not a User, Please Sign up!'
-            draft.isLoggedIn = false;
-            draft.isLoading = false;
-            draft.username = ''
-            draft.password = ''
-            return;
+            return {
+            ...state,
+            error: 'Not a User, Please Sign up!',
+            isLoggedIn : false,
+            isLoading : false,
+            username : '',
+            password : '',
+            }
         }
     }
 }
