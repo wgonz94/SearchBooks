@@ -1,4 +1,4 @@
-// Context for anything to do with the User
+// Context for anything to do with the User state and dispatch
 
 import { createContext } from 'react';
 
