@@ -10,7 +10,23 @@ export default function loginReducer(draft, action) {
             draft.isLoading = true;
             return;
         }
-        case 'success': {
+        case 'register': {
+            draft.message= '';
+            draft.isLoading = true;
+            return;
+        }
+        case 'register-success': {
+            draft.isLoading = false;
+            draft.firstname = '';
+            draft.lastname = '';
+            draft.username = '';
+            draft.email = '';
+            draft.password = '';
+            draft.password2 = '';
+            return;  
+        }
+        case 'login-success': {
+            localStorage.setItem('token', action.payload.token);
             draft.isLoggedIn = true;
             draft.isLoading = false;
             draft.user = action.payload;
@@ -29,6 +45,14 @@ export default function loginReducer(draft, action) {
         case 'logOut': {
             localStorage.removeItem('token')
             draft.isLoggedIn = false;
+            return;
+        }
+        case 'error-login': {
+            draft.error = 'Not a User, Please Sign up!'
+            draft.isLoggedIn = false;
+            draft.isLoading = false;
+            draft.username = ''
+            draft.password = ''
             return;
         }
     }
