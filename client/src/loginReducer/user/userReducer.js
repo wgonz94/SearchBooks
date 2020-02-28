@@ -1,5 +1,5 @@
 
-export default (state, action) => {
+export const UserReducer = (state, action) => {
     switch(action.type) {
         case 'field': {
             return {

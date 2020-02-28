@@ -1,7 +1,7 @@
 import React, {useReducer} from 'react';
 import axios from 'axios';
 import {UserContext} from './SDContext'
-import UserReducer from './userReducer'
+import {UserReducer} from './UserReducer'
 import setAuthToken from '../../utils/setAuthToken'
 
 
@@ -17,16 +17,15 @@ const initialState = {
     firstname:'',
     lastname: '',
     email: '',
-    password: '',
     password2: '',
 };
 
-const [state, dispatch] = useReducer(UseReducer, initialState);
+const [state, dispatch] = useReducer(UserReducer, initialState);
 
 const setUser = async () => {
     if (localStorage.token) {
         setAuthToken(localStorage.token);
-        dispatch({ type: 'setUser', payload: res.data });
+        dispatch({ type: 'setUser'});
     } 
 };
 
@@ -41,7 +40,8 @@ const register = async regData => {
         const res = await axios.post('/api/user/register', regData, config);
 
         dispatch({ 
-            type: 'register-success'
+            type: 'register-success',
+            payload: res.data
         })
     } catch(error) {
         dispatch({
@@ -51,7 +51,7 @@ const register = async regData => {
 }
 
 // // Login the User
-export const login = async logData => {
+const login = async logData => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -73,7 +73,7 @@ export const login = async logData => {
 };
 
 
-export const logout = () => dispatch({ type: LOGOUT });
+const logout = () => dispatch({ type: 'LOGOUT' });
 
 
 return (

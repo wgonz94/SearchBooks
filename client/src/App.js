@@ -1,9 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
-import {UserContext } from './loginReducer/user/SDContext'
-import loginReducer from './loginReducer/user/userReducer'
-import { useImmerReducer } from 'use-immer';
+import setAuthToken from './utils/setAuthToken'
 
 import Register from './pages/Register';
 import Saved from "./pages/Saved";
@@ -16,29 +13,17 @@ import { Container} from "./components/Grid";
 import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
+import UserState from "./loginReducer/user/UserState";
 
 
-const [state, dispatch] = useImmerReducer(loginReducer, initialState);
-const initialState = {
-  token: localStorage.getItem('token'),
-  isLoggedIn: false,
-  isLoading: false,
-  user: {},
-  error: '',
-  username: '',
-  password: '',
-  firstname:'',
-  lastname: '',
-  email: '',
-  password: '',
-  password2: '',
-};
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
-class App extends Component {
-  render() {
+function App() {
     return (
-      <DispatchContext.Provider value={dispatch}>
-      <StateContext.Provider value={state}>
+
+    <UserState>
       <div>
         <Nav/>
         <Jumbotron />
@@ -66,10 +51,8 @@ class App extends Component {
           </Container>
         </Router>
       </div>
-      </StateContext.Provider>
-      </DispatchContext.Provider>
-    );
+  </UserState>
+    )
   }
-}
 
 export default App;

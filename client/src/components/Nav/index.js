@@ -3,7 +3,7 @@ import "./style.css"
 
 function Nav() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-success">
             <a className="navbar-brand r-hover" href="/">
                 Search Books
             </a>
