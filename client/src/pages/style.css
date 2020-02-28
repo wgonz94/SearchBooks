@@ -40,3 +40,7 @@ div.thumbnail{
 h1.color{
     color: red !important;
 }
+
+form.registerForm{
+    height: 400px;
+}

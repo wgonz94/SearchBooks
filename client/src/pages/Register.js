@@ -1,9 +1,39 @@
-import React from 'react'
+import React,{ useState, useContext} from 'react'; 
+import UserContext from './../loginReducer/user/SDContext';
 import './style.css'
 
-function Register() {
+const Register = (props) => {
 
+//context api for user registration
+const userContext = useContext(UserContext)
+const {register} = userContext
 
+const [user, setUser] = useState({
+    firstname: '',
+    lastname: '',
+    username: '',
+    email: '',
+    password: '',
+    password2: '',
+})
+
+const {firstname, lastname, username, email, password, password2} = user;
+
+const onChange = e =>
+setUser({ ...user, [e.target.name]: e.target.value });
+
+const onSubmit = async e =>{
+    e.preventDefault();
+    register({
+            firstname, 
+            lastname, 
+            username, 
+            email, 
+            password, 
+            password2    
+        })
+
+}
 
 return (
     <div>
@@ -13,15 +43,15 @@ return (
         <h1 className='text-dark font-weight-bold'>
                 Account <span className='text-warning'>Registration</span>
             </h1>
-            <form>
+            <form className='registerForm' onSubmit={onSubmit}>
                 <div className='form-group font-weight-bold'>
                     <input
                         className='form-control'
                         type='text'
-                        name='name'
+                        name='firstname'
                         placeholder='firstname'
-                        value={''}
-                        // onChange={onChange}
+                        value={firstname}
+                        onChange={onChange}
                     />
                     
                 </div>
@@ -29,10 +59,10 @@ return (
                     <input
                         className='form-control'
                         type='text'
-                        name='name'
+                        name='lastname'
                         placeholder='lastname'
-                        value={''}
-                        // onChange={onChange}
+                        value={lastname}
+                        onChange={onChange}
                     />
                 </div>
                 <div className='form-group'>
@@ -41,8 +71,8 @@ return (
                         type='text'
                         name='email'
                         placeholder='email@email.com'
-                        value={''}
-                        // onChange={onChange}
+                        value={email}
+                        onChange={onChange}
                     />
                 </div>
                 <div className='form-group'>
@@ -51,8 +81,8 @@ return (
                         type='password'
                         name='password'
                         placeholder='password'
-                        value={''}
-                        // onChange={onChange}
+                        value={password}
+                        onChange={onChange}
                     />
                 </div>
                 <div className='form-group'>
@@ -61,8 +91,8 @@ return (
                         type='password'
                         name='password2'
                         placeholder='password again'
-                        value={''}
-                        // onChange={onChange}
+                        value={password2}
+                        onChange={onChange}
                     />
                 </div>
 

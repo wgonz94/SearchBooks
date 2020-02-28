@@ -1,6 +1,6 @@
 import React, {useReducer} from 'react';
 import axios from 'axios';
-import {UserContext} from './SDContext'
+import UserContext from './SDContext'
 import {UserReducer} from './UserReducer'
 import setAuthToken from '../../utils/setAuthToken'
 
