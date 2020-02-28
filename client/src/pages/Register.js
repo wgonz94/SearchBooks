@@ -24,6 +24,8 @@ setUser({ ...user, [e.target.name]: e.target.value });
 
 const onSubmit = async e =>{
     e.preventDefault();
+    console.log(firstname)
+    console.log(username)
     register({
             firstname, 
             lastname, 
@@ -62,6 +64,16 @@ return (
                         name='lastname'
                         placeholder='lastname'
                         value={lastname}
+                        onChange={onChange}
+                    />
+                </div>
+                <div className='form-group font-weight-bold'>
+                    <input
+                        className='form-control'
+                        type='text'
+                        name='username'
+                        placeholder='username'
+                        value={username}
                         onChange={onChange}
                     />
                 </div>
