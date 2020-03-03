@@ -13,9 +13,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav/>
-        <Jumbotron />
         <Router>
+          <Nav/>
+        <Jumbotron />
           <Container>
           <ToastContainer
             position="top-center"
@@ -30,8 +30,8 @@ class App extends Component {
             pauseOnHover
           />
             <Switch>
-              <Route path="/" component={Search} />
-              <Route path="/bookshelf" component={Saved} />
+              <Route exact path="/" component={Search} />
+              <Route exact path="/bookshelf" component={Saved} />
               <Route exact path="/books/:id" component={null} />
               <Route component={null} />
             </Switch>

@@ -9,6 +9,9 @@ div{
 div.display{
     margin-top: 50px;
 }
+h1.defaultMsg{
+    color: black !important;
+}
 div.list-overflow-container{
     margin-top: 25px;
 }

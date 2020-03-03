@@ -2,7 +2,6 @@ import React, { Component} from "react";
 import axios from "axios";
 import { Row, Col } from "../components/Grid";
 import {List, ListItem} from "../components/List";
-import NoBooks from "../components/NoBooks";
 import SaveBtn from "../components/SaveBtn"
 import "./style.css"
 
@@ -79,7 +78,7 @@ class Search extends Component {
                         </List>
                         :
                         <div className="display">
-                         <NoBooks/>   
+                        <h1 className="defaultMsg">Let's Start Searching!</h1> 
                         </div>
                         
                         }
