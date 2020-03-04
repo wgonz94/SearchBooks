@@ -1,5 +1,12 @@
 input{
     width: 500px;
+    border-radius: 12px;
+}
+button{
+    border-radius: 12px;
+}
+button:hover{
+    background-color: cadetblue;
 }
 
 div{

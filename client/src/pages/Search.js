@@ -41,7 +41,7 @@ class Search extends Component {
                 <Col size="md-12" className="display">
                     <div>
                         <input type="text" name="query" onChange={this.handleEntry}/>
-                        <button type="submit" onClick={this.searchBooks}>Search for Books</button>
+                        <button type="submit" onClick={this.searchBooks}>Search</button>
                     
                     
                         {(this.state.books && this.state.books.length > 0 ) ?
