@@ -11,7 +11,8 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "seed": "node scripts/seedDB.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
