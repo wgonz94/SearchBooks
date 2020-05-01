@@ -1,7 +1,5 @@
 # Search-Books!
 
-![SearchBooks-Gif]("./img/Search-Books.gif")
-
 
 ## Depolyed Site
 https://searchbookgoogs.herokuapp.com/
