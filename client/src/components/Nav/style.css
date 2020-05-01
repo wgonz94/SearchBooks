@@ -61,6 +61,8 @@ a.r-hover:hover{
     a{
         position: relative;
         left: 1150px;
+        color: black !important;
     }
+
 
     
