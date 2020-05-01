@@ -1,3 +1,10 @@
+div.background{
+  background-image: url("https://media2.giphy.com/media/ESxVxc9HttIDm/giphy.gif?cid=790b761144b4bf5a16dd588413a1b975f925b678997552ed&rid=giphy.gif");
+  background-repeat: no-repeat;
+  background-size: 100% 100%; 
+   
+
+}
 .App {
   text-align: center;
 }
